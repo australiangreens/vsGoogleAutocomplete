@@ -1,7 +1,7 @@
 /**
- * vsGoogleAutocomplete - v0.5.0 - 2017-05-04
+ * vsGoogleAutocomplete - v0.5.0 - 2019-11-18
  * https://github.com/vskosp/vsGoogleAutocomplete
- * Copyright (c) 2017 K.Polishchuk
+ * Copyright (c) 2019 K.Polishchuk
  * License: MIT
  */
 (function (window, document) {
@@ -184,7 +184,7 @@ angular.module('vsGoogleAutocomplete').factory('vsGooglePlace', ['vsGooglePlaceU
 
 //Validator - checks if place is full street address (street number, street, ...)
 angular.module('vsGoogleAutocomplete').factory('vsStreetAddress', ['vsGooglePlaceUtility', function(vsGooglePlaceUtility) {
-	var PLACE_TYPES = ["street_address", "premise", "subpremise"];
+	var PLACE_TYPES = ["street_address", "premise", "subpremise", "floor"];
 
 	function validate(place) {
 		return vsGooglePlaceUtility.isContainTypes(place, PLACE_TYPES);
@@ -192,4 +192,5 @@ angular.module('vsGoogleAutocomplete').factory('vsStreetAddress', ['vsGooglePlac
 
 	return validate;
 }]);
+
 })(window, document);

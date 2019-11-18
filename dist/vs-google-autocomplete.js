@@ -1,7 +1,7 @@
 /**
- * vsGoogleAutocomplete - v0.5.0 - 2017-05-04
+ * vsGoogleAutocomplete - v0.5.0 - 2019-11-18
  * https://github.com/vskosp/vsGoogleAutocomplete
- * Copyright (c) 2017 K.Polishchuk
+ * Copyright (c) 2019 K.Polishchuk
  * License: MIT
  */
 (function (window, document) {
@@ -58,6 +58,12 @@ angular.module('vsGoogleAutocomplete').factory('vsGooglePlaceUtility', function(
 		var COMPONENT_TEMPLATE = { subpremise: 'short_name' },
 			subPremise = getAddrComponent(place, COMPONENT_TEMPLATE);
 		return subPremise;
+	}
+
+	function getFloor(place) {
+		var COMPONENT_TEMPLATE = { floor: 'short_name' },
+			floor = getAddrComponent(place, COMPONENT_TEMPLATE);
+		return floor;
 	}
 
 	function getStreetNumber(place) {
@@ -126,6 +132,7 @@ angular.module('vsGoogleAutocomplete').factory('vsGooglePlaceUtility', function(
 		isContainTypes: isContainTypes,
 		getPlaceId: getPlaceId,
 		getSubPremise: getSubPremise,
+		getFloor: getFloor,
 		getStreetNumber: getStreetNumber,
 		getStreet: getStreet,
 		getCity: getCity,
@@ -148,6 +155,7 @@ angular.module('vsGoogleAutocomplete').directive('vsGoogleAutocomplete', ['vsGoo
 			vsPlace: '=?',
 			vsPlaceId: '=?',
 			vsSubPremise: '=?',
+			vsFloor: '=?',
 			vsStreetNumber: '=?',
 			vsStreet: '=?',
 			vsCity: '=?',
@@ -169,6 +177,7 @@ angular.module('vsGoogleAutocomplete').directive('vsGoogleAutocomplete', ['vsGoo
 			this.updatePlaceComponents = function(place) {
 				$scope.vsPlaceId       = !!$attrs.vsPlaceId  && place     ? vsGooglePlaceUtility.getPlaceId(place)      : undefined;
 				$scope.vsSubPremise    = !!$attrs.vsSubPremise && place   ? vsGooglePlaceUtility.getSubPremise(place)   : undefined;
+				$scope.vsFloor         = !!$attrs.vsFloor && place        ? vsGooglePlaceUtility.getFloor(place)        : undefined;
 				$scope.vsStreetNumber  = !!$attrs.vsStreetNumber && place ? vsGooglePlaceUtility.getStreetNumber(place) : undefined;
 				$scope.vsStreet        = !!$attrs.vsStreet && place       ? vsGooglePlaceUtility.getStreet(place)       : undefined;
 				$scope.vsCity          = !!$attrs.vsCity && place         ? vsGooglePlaceUtility.getCity(place)         : undefined;
